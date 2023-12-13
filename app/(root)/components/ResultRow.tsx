@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import DigitResult from "./DigitResult"
 import Keyboard from "./Keyboard"
+import { toast } from "react-toastify"
 
 interface ResultProps {
     num: string
@@ -13,17 +14,19 @@ const ResultRow = ({ num, result }: ResultProps) => {
 
     const [userResult, setUserResult] = useState<string[]>([])
 
+    const notify = (message: string) => toast(message);
+
     useEffect(() => {
        console.log(userResult)
        const cleanedArray = userResult.filter(char => typeof char === 'string');
        const isFilledArray = cleanedArray.length === result.toString().length
        if(isFilledArray) {
         if(userResult.join('') === result.toString()) {
-            alert("Ganaste")
+           toast.success('¡Felicidades, es correcto!')
         } else {
-            alert("Perdiste")
-        }
+            toast.warning('Por favor, inténtalo de nuevo')
        }
+    }
     },[userResult])
 
 
