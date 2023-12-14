@@ -14,8 +14,6 @@ const ResultRow = ({ num, result }: ResultProps) => {
 
     const [userResult, setUserResult] = useState<string[]>([])
 
-    const notify = (message: string) => toast(message);
-
     useEffect(() => {
        console.log(userResult)
        const cleanedArray = userResult.filter(char => typeof char === 'string');

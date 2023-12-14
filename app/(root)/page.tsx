@@ -1,15 +1,16 @@
 import Link from "next/link";
-import Operation from "./components/Operation";
 import Image from "next/image";
-import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { cookies } from 'next/headers'
+
 
 export default function Home() {
+
   return (
     <main className="flex-1 flex flex-col md:flex-row items-center">
       <div className="flex flex-col items-center justify-center p-8">
         <h1 className="text-3xl font-bold">Marserator</h1>
-        <Image src="/logo_marserator.png" alt="logo" width={200} height={200} />
+        <Image src="/logo_blanco.png" alt="logo" width={200} height={200} />
       </div>
       <div className="flex-1 flex justify-center w-full">
         <ul className="flex flex-col items-center gap-6 w-full">

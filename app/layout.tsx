@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { cookies } from 'next/headers';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,9 +17,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  const cookieStore = cookies()
+  const themeColor = cookieStore.get('theme-color')?.value
+  console.log(themeColor)
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className}`} style={{background:themeColor || '#86efac'}}>
+        {children}
+      <ToastContainer autoClose={2000} theme="dark" />
+        
+      </body>
     </html>
   )
 }

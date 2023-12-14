@@ -5,3 +5,36 @@ export function generateRandomByDigits(numDigits: number) {
     return num;
 }
 
+export const generateRandomLowNumbers = (numDigits: number) => {
+     const lowNumbers = [];
+     for (let index = 0; index < numDigits; index++) {
+         lowNumbers.push(Math.floor(Math.random() * 5))
+     }
+     return Number(lowNumbers.join(''))
+}
+
+export const calculateLevelAddition = (level: number) => {
+    if( level === 1 ) return {"numRows": 2, "digits": 1, "lowNumbers": false}
+    if( level === 2 ) return {"numRows": 2, "digits": 2, "lowNumbers": true}
+    if( level === 3 ) return {"numRows": 2, "digits": 2, "lowNumbers": false}
+    if( level === 4 ) return {"numRows": 2, "digits": 3, "lowNumbers": true}
+    if( level === 5 ) return {"numRows": 2, "digits": 3, "lowNumbers": false}
+    if( level === 6 ) return {"numRows": 2, "digits": 4, "lowNumbers": true}
+    if( level === 7 ) return {"numRows": 2, "digits": 4, "lowNumbers": false}
+    if( level === 8 ) return {"numRows": 2, "digits": 5, "lowNumbers": true}
+    if( level === 9 ) return {"numRows": 2, "digits": 5, "lowNumbers": false}
+    if( level === 10 ) return {"numRows": 2, "digits": 6, "lowNumbers": true}
+    if( level === 11 ) return {"numRows": 2, "digits": 6, "lowNumbers": false}
+    if( level === 12 ) return {"numRows": 3, "digits": 4, "lowNumbers": false}
+    if( level === 13 ) return {"numRows": 3, "digits": 5, "lowNumbers": false}
+    if( level === 14 ) return {"numRows": 3, "digits": 6, "lowNumbers": false}
+    if( level === 15 ) return {"numRows": 4, "digits": 5, "lowNumbers": false}
+    if( level === 16 ) return {"numRows": 4, "digits": 6, "lowNumbers": false}
+    if( level === 17 ) return {"numRows": 5, "digits": 6, "lowNumbers": false}
+    if( level === 18 ) return {"numRows": 6, "digits": 6, "lowNumbers": false}
+    if( level === 19 ) return {"numRows": 7, "digits": 6, "lowNumbers": false}
+    if( level === 20 ) return {"numRows": 8, "digits": 6, "lowNumbers": false}
+    if( level === 21 ) return {"numRows": 9, "digits": 6, "lowNumbers": false}
+    if( level === 22 ) return {"numRows": 10, "digits": 6, "lowNumbers": false}
+
+}

@@ -33,7 +33,7 @@ const DigitResult = ({char, setUserResult, index}: DigitProps) => {
 
     <div onClick={() => {
         setVisibleKey(!visibleKey)
-    }} className={`m-1 p-2 text-xl text-center min-w-[44px] bg-yellow-400 ${visibleKey && 'animate-pulse'} rounded-md`}>{digit}
+    }} className={`m-1 p-2 text-xl text-center min-w-[44px] bg-white bg-opacity-20 ${visibleKey && 'animate-pulse'} rounded-md`}>{digit}
     </div>
     {visibleKey && <div className="absolute top-20 right-0">
                 <Keyboard setDigit={setDigit} setVisibleKey={setVisibleKey} />

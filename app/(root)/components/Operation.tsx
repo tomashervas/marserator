@@ -14,8 +14,8 @@ const Operation = ({ numRows, digits, operator }: OperationProps) => {
     for (let index = 0; index < numRows; index++) {
         let currentNum = generateRandomByDigits(digits);
         if (index !== 0) {
-            if(operator === "-" && currentNum > nums[0]) {
-                console.log(currentNum +  'es mayor que ' +  nums[0])
+            if (operator === "-" && currentNum > nums[0]) {
+                console.log(currentNum + 'es mayor que ' + nums[0])
                 while (currentNum > nums[0]) {
                     currentNum = generateRandomByDigits(digits);
                 }
@@ -25,13 +25,30 @@ const Operation = ({ numRows, digits, operator }: OperationProps) => {
     }
 
     const result = operator === "+" ? nums.reduce((acc, num) => acc + num, 0) : nums[0] - nums[1]
+    const carryingRow = []
+    for (let index = nums[0].toString().length - 1; index >= 0; index--) {
+        if (operator === "+") {
+            let column = 0
+            for (let i = 0; i < numRows; i++) {
+                column = column + Number(nums[i].toString()[index])
+            }
+            if (carryingRow[index + 1]) column = column + Number(carryingRow[index + 1])
+            //const column = Number(nums[0].toString()[index]) + Number(nums[1].toString()[index])
+            console.log(index, column, column.toString(), column.toString()[0])
+            carryingRow[index] = (column > 9) ? column.toString()[0] : " "
+        } else {
+            carryingRow.push(" ")
+        }
+    }
+    carryingRow.push(" ")
     console.log(nums + " = " + result)
+    console.log('carryingRow', carryingRow)
 
     return (
         <div className="flex flex-col items-end">
-            <NumberRow num={"1".repeat(result.toString().length)} isOne operator={operator}/>
+            <NumberRow num={carryingRow} isOne operator={operator} />
             {nums.map((num, index) => (
-                <NumberRow key={index} num={num.toString()} isOperator={index === numRows - 1 ? true : false} operator={operator} />
+                <NumberRow key={index} num={num.toString().split('')} isOperator={index === numRows - 1 ? true : false} operator={operator} />
             ))}
             <ResultRow num={"_".repeat(result.toString().length)} result={result} />
         </div>

@@ -4,7 +4,7 @@ import { generateRandomByDigits } from "@/utils/operations"
 import Digit from "./Digit"
 
 interface NumberProps {
-    num: string,
+    num: (string | undefined)[],
     isOne?: boolean,
     isOperator?: boolean,
     operator?: string
@@ -18,7 +18,7 @@ const NumberRow = ({num, isOne, isOperator, operator}: NumberProps) => {
         {isOperator && (
           <div className="p-2 text-xl">{operator}</div>
         )}
-        {num.split('').map((char, index) => (
+        {num.map((char, index) => (
             <Digit key={index} char={char} isOne={isOne} operator={operator}/>
         ))} 
       </div>
