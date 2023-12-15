@@ -12,26 +12,30 @@ interface ResultProps {
 
 const ResultRow = ({ num, result }: ResultProps) => {
 
-    const [userResult, setUserResult] = useState<string[]>([])
+    const [boxes, setBoxes] = useState(num.toString().split(''))
 
     useEffect(() => {
-       console.log(userResult)
-       const cleanedArray = userResult.filter(char => typeof char === 'string');
-       const isFilledArray = cleanedArray.length === result.toString().length
+    const isFilledArray = !boxes.find(char => char === '_')
+    console.log(isFilledArray, boxes)
        if(isFilledArray) {
-        if(userResult.join('') === result.toString()) {
+        if(boxes.join('') === result.toString()) {
            toast.success('¡Felicidades, es correcto!')
         } else {
+            reset()
             toast.warning('Por favor, inténtalo de nuevo')
        }
     }
-    },[userResult])
+    },[boxes])
+
+    const reset = () => {
+        setBoxes(num.toString().split(''))
+    }
 
 
     return (
         <div className="flex justify-center border-t border-black relative">
-            {num.toString().split('').map((char, index) => (
-                <DigitResult key={index} char={char} setUserResult={setUserResult} index={index} />
+            {boxes.map((char, index) => (
+                <DigitResult key={index} char={char} index={index} setBoxes={setBoxes} />
             ))}
             
         </div>

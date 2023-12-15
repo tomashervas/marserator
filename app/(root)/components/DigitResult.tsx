@@ -1,42 +1,28 @@
 "use client"
+
 import { useEffect, useState } from "react"
 import Keyboard from "./Keyboard"
 
  interface DigitProps {
   char: string
-  setUserResult: any
   index: number
+  setBoxes: React.Dispatch<React.SetStateAction<string[]>>
 }
 
-const DigitResult = ({char, setUserResult, index}: DigitProps) => {
+const DigitResult = ({char, setBoxes, index}: DigitProps) => {
 
-   const [digit, setDigit] = useState(char)
+   //const [digit, setDigit] = useState(char)
    const [visibleKey, setVisibleKey] = useState(false)
-
-   useEffect(() => {
-       if (digit!=='_') {updatePosition(index, digit)}
-   }, [digit])
-
-   const updatePosition = (index: number, newValue: string) => {
-    setUserResult((prev: string[]) => {
-      const newArray: string[] = [...prev]
-      newArray[index] = newValue
-      return newArray
-    });
-  };
-
-
-   
 
   return (
     <div>
 
     <div onClick={() => {
         setVisibleKey(!visibleKey)
-    }} className={`m-1 p-2 text-xl text-center min-w-[44px] bg-white bg-opacity-20 ${visibleKey && 'animate-pulse'} rounded-md`}>{digit}
+    }} className={`m-1 p-2 text-xl text-center min-w-[44px] bg-white bg-opacity-20 ${visibleKey && 'animate-pulse'} rounded-md`}>{char}
     </div>
     {visibleKey && <div className="absolute top-20 right-0">
-                <Keyboard setDigit={setDigit} setVisibleKey={setVisibleKey} />
+                <Keyboard setBoxes={setBoxes} setVisibleKey={setVisibleKey} index={index} />
             </div>}
     </div>
 

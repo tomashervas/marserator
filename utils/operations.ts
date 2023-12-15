@@ -6,11 +6,13 @@ export function generateRandomByDigits(numDigits: number) {
 }
 
 export const generateRandomLowNumbers = (numDigits: number) => {
-     const lowNumbers = [];
+     const lowNumbersString = [];
      for (let index = 0; index < numDigits; index++) {
-         lowNumbers.push(Math.floor(Math.random() * 5))
+         lowNumbersString.push(Math.ceil(Math.random() * 4))
      }
-     return Number(lowNumbers.join(''))
+
+
+     return Number(lowNumbersString.join(''))
 }
 
 export const calculateLevelAddition = (level: number) => {
