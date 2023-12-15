@@ -6,11 +6,16 @@ import { cookies } from 'next/headers'
 
 export default function Home() {
 
+  const cookieStore = cookies()
+  const themeColor = cookieStore.get('theme-color')?.value || '#86efac'
+  const image = themeColor?.split('#')[1]
+
+
   return (
     <main className="flex-1 flex flex-col md:flex-row items-center">
       <div className="flex flex-col items-center justify-center p-8">
         <h1 className="text-3xl font-bold">Marserator</h1>
-        <Image src="/logo_blanco.png" alt="logo" width={200} height={200} />
+        <Image src={`/logo_${image}.png`} alt="logo" width={200} height={200} />
       </div>
       <div className="flex-1 flex justify-center w-full">
         <ul className="flex flex-col items-center gap-6 w-full">

@@ -1,3 +1,5 @@
+import { selectColor } from "@/utils/operations"
+
 interface KeyboardProps {
     setDigit: React.Dispatch<React.SetStateAction<string>>
     setVisibleKey: React.Dispatch<React.SetStateAction<boolean>>
@@ -13,11 +15,11 @@ const Keyboard = ({ setDigit, setVisibleKey}: KeyboardProps) => {
                 <div key={num} onClick={() => {
                     setDigit(num.toString())
                     setVisibleKey(false)
-                }} className="m-1 p-2 text-xl text-center min-w-[44px] bg-yellow-500 rounded-md">
+                }} className={`m-1 p-2 text-xl text-center min-w-[44px] bg-black bg-opacity-5 rounded-md`}>
                     {num}
                 </div>
             ))}
-            <div onClick={() => setVisibleKey(false)} className="m-1 p-2 text-xl text-center min-w-[96px] bg-yellow-500 rounded-md">Cerrar</div>
+            <div onClick={() => setVisibleKey(false)} className={`m-1 p-2 text-xl text-center min-w-[96px] bg-black bg-opacity-5 rounded-md`}>Cerrar</div>
         </div>
     )
 }

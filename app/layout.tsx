@@ -20,7 +20,7 @@ export default function RootLayout({
 
   const cookieStore = cookies()
   const themeColor = cookieStore.get('theme-color')?.value
-  console.log(themeColor)
+  
   return (
     <html lang="en">
       <body className={`${inter.className}`} style={{background:themeColor || '#86efac'}}>

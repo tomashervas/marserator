@@ -1,4 +1,4 @@
-import { generateRandomByDigits } from "@/utils/operations"
+import { generateRandomByDigits, generateRandomLowNumbers } from "@/utils/operations"
 import NumberRow from "./NumberRow"
 import ResultRow from "./ResultRow"
 import Keyboard from "./Keyboard"
@@ -6,18 +6,19 @@ import Keyboard from "./Keyboard"
 interface OperationProps {
     numRows: number
     digits: number
-    operator: string
+    operator: string,
+    lowNumbers?: boolean
 }
-const Operation = ({ numRows, digits, operator }: OperationProps) => {
+const Operation = ({ numRows, digits, operator, lowNumbers }: OperationProps) => {
 
     const nums: number[] = [];
     for (let index = 0; index < numRows; index++) {
-        let currentNum = generateRandomByDigits(digits);
+        let currentNum = lowNumbers ? generateRandomLowNumbers(digits) : generateRandomByDigits(digits);
         if (index !== 0) {
             if (operator === "-" && currentNum > nums[0]) {
                 console.log(currentNum + 'es mayor que ' + nums[0])
                 while (currentNum > nums[0]) {
-                    currentNum = generateRandomByDigits(digits);
+                    currentNum = lowNumbers ? generateRandomLowNumbers(digits) : generateRandomByDigits(digits);
                 }
             }
         }

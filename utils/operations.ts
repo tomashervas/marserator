@@ -38,3 +38,15 @@ export const calculateLevelAddition = (level: number) => {
     if( level === 22 ) return {"numRows": 10, "digits": 6, "lowNumbers": false}
 
 }
+
+export const selectColor = (color: string) => {
+    if(color === '#f87171') return 'bg-[#f87171]'
+    if(color === '#fdba74') return 'bg-[#fdba74]'
+    if(color === '#fde047') return 'bg-[#fde047]'
+    if(color === '#bef264') return 'bg-[#bef264]'
+    if(color === '#86efac') return 'bg-[#86efac]'
+    if(color === '#2dd4bf') return 'bg-[#2dd4bf]'
+    if(color === '#67e8f9') return 'bg-[#67e8f9]'
+    if(color === '#a5b4fc') return 'bg-[#a5b4fc]'
+    if(color === '#f9a8d4') return 'bg-[#f9a8d4]'
+}
