@@ -15,7 +15,7 @@ export const generateRandomLowNumbers = (numDigits: number) => {
      return Number(lowNumbersString.join(''))
 }
 
-export const calculateLevelAddition = (level: number) => {
+export const calculateLevelAddition = (level: number): {numRows: number, digits: number, lowNumbers: boolean} => {
     if( level === 1 ) return {"numRows": 2, "digits": 1, "lowNumbers": false}
     if( level === 2 ) return {"numRows": 2, "digits": 2, "lowNumbers": true}
     if( level === 3 ) return {"numRows": 2, "digits": 2, "lowNumbers": false}
@@ -38,6 +38,7 @@ export const calculateLevelAddition = (level: number) => {
     if( level === 20 ) return {"numRows": 8, "digits": 6, "lowNumbers": false}
     if( level === 21 ) return {"numRows": 9, "digits": 6, "lowNumbers": false}
     if( level === 22 ) return {"numRows": 10, "digits": 6, "lowNumbers": false}
+    return {"numRows": 2, "digits": 1, "lowNumbers": false}
 
 }
 

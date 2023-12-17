@@ -2,14 +2,16 @@ import { generateRandomByDigits, generateRandomLowNumbers } from "@/utils/operat
 import NumberRow from "./NumberRow"
 import ResultRow from "./ResultRow"
 import Keyboard from "./Keyboard"
+import { Practice } from "@/hooks/useStore"
 
 interface OperationProps {
     numRows: number
     digits: number
     operator: string,
-    lowNumbers?: boolean
+    lowNumbers?: boolean,
+    keyName: keyof Practice
 }
-const Operation = ({ numRows, digits, operator, lowNumbers }: OperationProps) => {
+const Operation = ({ numRows, digits, operator, lowNumbers, keyName }: OperationProps) => {
 
     const nums: number[] = [];
     for (let index = 0; index < numRows; index++) {
@@ -43,6 +45,7 @@ const Operation = ({ numRows, digits, operator, lowNumbers }: OperationProps) =>
     }
     carryingRow.push(" ")
     console.log(nums + " = " + result)
+    console.log('result length', result.toString().length)
     console.log('carryingRow', carryingRow)
 
     return (
@@ -51,7 +54,7 @@ const Operation = ({ numRows, digits, operator, lowNumbers }: OperationProps) =>
             {nums.map((num, index) => (
                 <NumberRow key={index} num={num.toString().split('')} isOperator={index === numRows - 1 ? true : false} operator={operator} />
             ))}
-            <ResultRow num={"_".repeat(result.toString().length)} result={result} />
+            <ResultRow num={"_".repeat(result.toString().length)} result={result} keyName={keyName}/>
         </div>
     )
 }
