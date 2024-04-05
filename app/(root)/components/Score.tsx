@@ -21,7 +21,7 @@ const Score = ({ keyName }: ScoreProps) => {
   return (
     <div className="absolute bottom-14 left-4">
         {/* <button onClick={ () => setPracticeLevel(keyName, practiceLevel[keyName]+1)}>+1</button> */}
-        <p>Nivel:{practiceLevel[keyName]}</p>
+        <p>Nivel: {practiceLevel[keyName]}</p>
         <p>Puntuación: {practiceScore[keyName]}</p>
         <p>Récord: {practiceBestScore[keyName]}</p>
         <p>Mejor racha: {practiceBestStreak[keyName]}</p>

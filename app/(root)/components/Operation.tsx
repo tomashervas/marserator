@@ -18,7 +18,7 @@ const Operation = ({ numRows, digits, operator, lowNumbers, keyName }: Operation
         let currentNum = lowNumbers ? generateRandomLowNumbers(digits) : generateRandomByDigits(digits);
         if (index !== 0) {
             if (operator === "-" && currentNum > nums[0]) {
-                console.log(currentNum + 'es mayor que ' + nums[0])
+                // console.log(currentNum + 'es mayor que ' + nums[0])
                 while (currentNum > nums[0]) {
                     currentNum = lowNumbers ? generateRandomLowNumbers(digits) : generateRandomByDigits(digits);
                 }
@@ -37,24 +37,24 @@ const Operation = ({ numRows, digits, operator, lowNumbers, keyName }: Operation
             }
             if (carryingRow[index + 1]) column = column + Number(carryingRow[index + 1])
             //const column = Number(nums[0].toString()[index]) + Number(nums[1].toString()[index])
-            console.log(index, column, column.toString(), column.toString()[0])
+            // console.log(index, column, column.toString(), column.toString()[0])
             carryingRow[index] = (column > 9) ? column.toString()[0] : " "
         } else {
             carryingRow.push(" ")
         }
     }
     carryingRow.push(" ")
-    console.log(nums + " = " + result)
-    console.log('result length', result.toString().length)
-    console.log('carryingRow', carryingRow)
+    // console.log(nums + " = " + result)
+    // console.log('result length', result.toString().length)
+    // console.log('carryingRow', carryingRow)
 
     return (
-        <div className="flex flex-col items-end">
+        <div className="flex flex-col items-end ">
             <NumberRow num={carryingRow} isOne operator={operator} />
             {nums.map((num, index) => (
                 <NumberRow key={index} num={num.toString().split('')} isOperator={index === numRows - 1 ? true : false} operator={operator} />
             ))}
-            <ResultRow num={"_".repeat(result.toString().length)} result={result} keyName={keyName}/>
+            <ResultRow num={"_".repeat(result.toString().length)} result={result} keyName={keyName} operator={operator}/>
         </div>
     )
 }

@@ -42,6 +42,17 @@ export const calculateLevelAddition = (level: number): {numRows: number, digits:
 
 }
 
+export const calculateLevelSubtraction = (level: number): {numRows: number, digits: number, lowNumbers: boolean} => {
+    if( level === 1 ) return {"numRows": 2, "digits": 1, "lowNumbers": false}
+    if( level === 2 ) return {"numRows": 2, "digits": 2, "lowNumbers": true}
+    if( level === 3 ) return {"numRows": 2, "digits": 2, "lowNumbers": false}
+    if( level === 4 ) return {"numRows": 2, "digits": 3, "lowNumbers": true}
+    if( level === 5 ) return {"numRows": 2, "digits": 3, "lowNumbers": false}
+    if( level === 6 ) return {"numRows": 2, "digits": 4, "lowNumbers": true}
+    if( level === 7 ) return {"numRows": 2, "digits": 4, "lowNumbers": false}
+    return {"numRows": 2, "digits": 1, "lowNumbers": false}
+}
+
 export const selectColor = (color: string) => {
     if(color === '#f87171') return 'bg-[#f87171]'
     if(color === '#fdba74') return 'bg-[#fdba74]'

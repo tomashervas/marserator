@@ -18,7 +18,7 @@ export default function Home() {
         <Image src={`/logo_${image}.png`} alt="logo" width={200} height={200} />
       </div>
       <div className="flex-1 flex justify-center w-full">
-        <ul className="flex flex-col items-center gap-6 w-full">
+        <ul className="flex flex-col items-center space-y-4 w-full">
           <li className="text-xl w-3/4 border border-slate-800 py-2 px-4 shadow-md rounded-lg text-center"><Link href={"/practice"}>Practica operaciones</Link></li>
           <li className="text-xl w-3/4 border border-slate-800 py-2 px-4 shadow-md rounded-lg text-center"><Link href={"/challenges"}>Desafíos</Link></li>
           <li className="text-xl w-3/4 border border-slate-800 py-2 px-4 shadow-md rounded-lg text-center"><Link href={"/problems"}>Problemas</Link></li>
