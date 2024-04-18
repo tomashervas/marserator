@@ -5,6 +5,7 @@ import DigitResult from "./DigitResult"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
 import { Practice, useStore } from "@/hooks/useStore"
+import Keyboard from "./Keyboard"
 
 interface ResultProps {
     num: string
@@ -17,8 +18,9 @@ const delay = async (ms: number) => new Promise(res => setTimeout(res, ms))
 const ResultRow = ({ num, result, keyName, operator }: ResultProps) => {
 
     const [boxes, setBoxes] = useState<string[]>(num.toString().split(''))
+    const [index, setIndex] = useState<number>(0)
     const router = useRouter()
-    const { practiceLevel, practiceTempLevel, setPracticeTempLevel, setPracticeLevel, practiceScore, practiceBestScore, practiceBestStreak, setPracticeScore, setPracticeBestStreak, setPracticeBestScore, resetPractice, setKeyName, toNextLevel, setToNextLevel } = useStore(state => state)
+    const { practiceLevel, practiceTempLevel, setPracticeTempLevel, setPracticeLevel, practiceScore, practiceBestScore, practiceBestStreak, setPracticeScore, setPracticeBestStreak, setPracticeBestScore, resetPractice, setKeyName, toNextLevel, setToNextLevel,isVisibleKey, setIsVisibleKey } = useStore(state => state)
     const success = useRef<HTMLAudioElement>(null)
     const levelup = useRef<HTMLAudioElement>(null)
     const fail = useRef<HTMLAudioElement>(null)
@@ -42,19 +44,19 @@ const ResultRow = ({ num, result, keyName, operator }: ResultProps) => {
                 if (practiceLevel['practiceAddition'] <= 22 && practiceLevel['practiceSubtraction'] <= 7) {
                     setToNextLevel(toNextLevel - 1)
                 }
-                if(toNextLevel === 0) {
+                if (toNextLevel === 0) {
                     const expirationDate = new Date();
                     expirationDate.setDate(expirationDate.getDate() + 90);
-                    if (practiceTempLevel[keyName]  !== 0) {
+                    if (practiceTempLevel[keyName] !== 0) {
                         setPracticeTempLevel(keyName, practiceTempLevel[keyName] + 1)
-                        document.cookie = `practiceTempLevel${keyName}=${practiceTempLevel[keyName]+1}; path=/; expires=${expirationDate.toUTCString()}`
+                        document.cookie = `practiceTempLevel${keyName}=${practiceTempLevel[keyName] + 1}; path=/; expires=${expirationDate.toUTCString()}`
                     }
                     if ((practiceTempLevel[keyName] === practiceLevel[keyName]) || practiceTempLevel[keyName] === 0) {
                         setPracticeLevel(keyName, practiceLevel[keyName] + 1)
-                        document.cookie = `practiceLevel${keyName}=${practiceLevel[keyName]+1}; path=/; expires=${expirationDate.toUTCString()}`
+                        document.cookie = `practiceLevel${keyName}=${practiceLevel[keyName] + 1}; path=/; expires=${expirationDate.toUTCString()}`
                     }
-                    
-                    setToNextLevel( practiceTempLevel[keyName] !== 0 ? practiceTempLevel[keyName] + 2 : practiceLevel[keyName] + 10)
+
+                    setToNextLevel(practiceTempLevel[keyName] !== 0 ? practiceTempLevel[keyName] + 2 : practiceLevel[keyName] + 10)
                     levelup.current?.play()
                 }
                 router.refresh()
@@ -86,7 +88,7 @@ const ResultRow = ({ num, result, keyName, operator }: ResultProps) => {
         resetPractice()
         if (success.current) {
             success.current.volume = 0.1;
-          }
+        }
         setKeyName(keyName)
     }, [])
 
@@ -101,8 +103,15 @@ const ResultRow = ({ num, result, keyName, operator }: ResultProps) => {
         <div>
             <div className={`flex justify-end relative ${operator === '+' && 'border-t border-black'}`}>
                 {boxes.map((char, index) => (
-                    <DigitResult key={index} char={char} index={index} setBoxes={setBoxes} />
+                    <DigitResult key={index} onClick={() => {
+                        setIsVisibleKey(!isVisibleKey)
+                        setIndex(index)
+                      }} > {char} </DigitResult>
                 ))}
+
+                {isVisibleKey && <div className="absolute top-20 right-0">
+                    <Keyboard setBoxes={setBoxes} setIsVisibleKey={setIsVisibleKey} index={index} />
+                </div>}
 
             </div>
             <div className="absolute bottom-14 right-4"> Siguiente nivel: {toNextLevel} </div>

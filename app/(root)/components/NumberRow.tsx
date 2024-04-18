@@ -11,8 +11,6 @@ interface NumberProps {
 }
 const NumberRow = ({num, isOne, isOperator, operator}: NumberProps) => {
 
-  if(isOne) console.log(operator)
-  
   return (
         <div className={`flex justify-center ${(isOperator && operator==='-') && 'border-b border-black'}`}>
         {isOperator && (

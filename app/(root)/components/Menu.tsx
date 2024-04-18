@@ -25,6 +25,8 @@ const Menu = ({ closeMenu }: MenuProps) => {
             return 'practiceAddition'
         } else if (operation === '/practice/substraction') {
             return 'practiceSubtraction'
+        } else if (operation === '/practice/multiply') {
+            return 'practiceMultiply'
         }
         else  return 'practiceAddition'
     }
@@ -70,7 +72,7 @@ const Menu = ({ closeMenu }: MenuProps) => {
 
                         {
                             levelArray.map((level) => (
-                                <li key={level}><button className={`w-10 h-10 border border-zinc-800 rounded-md shadow-md ${level === practiceTempLevel[selectOperation(pathname)] ? 'bg-slate-600/50' : ''}`} type="button" onClick={onChangeTempLevel}>{level}</button></li>
+                                <li key={level}><button className={`w-10 h-10 mb-4 border border-zinc-800 rounded-md shadow-md ${level === practiceTempLevel[selectOperation(pathname)] ? 'bg-slate-600/50' : ''}`} type="button" onClick={onChangeTempLevel}>{level}</button></li>
                             ))
                         }
                     </ul>
@@ -81,7 +83,7 @@ const Menu = ({ closeMenu }: MenuProps) => {
             <div>
                 <ul className="flex space-x-4 flex-wrap">
                     {colors.map((color) => (
-                        <button className="w-10 h-10 border border-zinc-800 rounded-md shadow-md" key={color} value={color} onClick={handleColorChange} style={{ backgroundColor: color }} type="button"></button>
+                        <button className="w-10 h-10 mb-4 border border-zinc-800 rounded-md shadow-md" key={color} value={color} onClick={handleColorChange} style={{ backgroundColor: color }} type="button"></button>
                     ))}
                 </ul>
             </div>

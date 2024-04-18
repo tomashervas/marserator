@@ -24,7 +24,7 @@ const Score = ({ keyName }: ScoreProps) => {
         <p>Nivel: {practiceLevel[keyName]}</p>
         <p>Puntuación: {practiceScore[keyName]}</p>
         <p>Récord: {practiceBestScore[keyName]}</p>
-        <p>Mejor racha: {practiceBestStreak[keyName]}</p>
+        <p>Racha: {practiceBestStreak[keyName]}</p>
     </div>
   )
 }

@@ -53,6 +53,30 @@ export const calculateLevelSubtraction = (level: number): {numRows: number, digi
     return {"numRows": 2, "digits": 1, "lowNumbers": false}
 }
 
+export const calculateLevelMultiplication = (level: number): {numRows: number, digits: number, base: number} => {
+    if (level === 1) return {"numRows": 2, "digits": 1, "base": 2}
+    if (level === 2) return {"numRows": 2, "digits": 1, "base": 3}
+    if (level === 3) return {"numRows": 2, "digits": 1, "base": 4}
+    if (level === 4) return {"numRows": 2, "digits": 1, "base": 5}
+    if (level === 5) return {"numRows": 2, "digits": 1, "base": 6}
+    if (level === 6) return {"numRows": 2, "digits": 1, "base": 7}
+    if (level === 7) return {"numRows": 2, "digits": 1, "base": 8}
+    if (level === 8) return {"numRows": 2, "digits": 1, "base": 9}
+    if (level === 9) return {"numRows": 2, "digits": 2, "base": 2}
+    if (level === 10) return {"numRows": 2, "digits": 2, "base": 3}
+    if (level === 11) return {"numRows": 2, "digits": 2, "base": 4}
+    if (level === 12) return {"numRows": 2, "digits": 2, "base": 5}
+    if (level === 13) return {"numRows": 2, "digits": 2, "base": 6}
+    if (level === 14) return {"numRows": 2, "digits": 2, "base": 7}
+    if (level === 15) return {"numRows": 2, "digits": 2, "base": 8}
+    if (level === 16) return {"numRows": 2, "digits": 2, "base": 9}
+    if (level === 17) return {"numRows": 2, "digits": 3, "base": Math.floor(Math.random() * 9) + 1}
+    if (level === 18) return {"numRows": 2, "digits": 4, "base": Math.floor(Math.random() * 9) + 1}
+    if (level === 19) return {"numRows": 2, "digits": 5, "base": Math.floor(Math.random() * 9) + 1}
+    if (level === 20) return {"numRows": 2, "digits": 6, "base": Math.floor(Math.random() * 9) + 1}
+    return {"numRows": 2, "digits": 1, "base": 2}
+}
+
 export const selectColor = (color: string) => {
     if(color === '#f87171') return 'bg-[#f87171]'
     if(color === '#fdba74') return 'bg-[#fdba74]'

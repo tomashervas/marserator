@@ -1,31 +1,17 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import Keyboard from "./Keyboard"
+import { useStore } from "@/hooks/useStore"
 
- interface DigitProps {
-  char: string
-  index: number
-  setBoxes: React.Dispatch<React.SetStateAction<string[]>>
-}
+interface DigitProps extends React.HTMLAttributes<HTMLDivElement>{} 
 
-const DigitResult = ({char, setBoxes, index}: DigitProps) => {
+const DigitResult = ({children, ...props }: DigitProps) => {
 
-   //const [digit, setDigit] = useState(char)
-   const [visibleKey, setVisibleKey] = useState(false)
+  const { isVisibleKey} = useStore(state => state)
 
   return (
-    <div>
 
-    <div onClick={() => {
-        setVisibleKey(!visibleKey)
-    }} className={`m-1 p-2 text-xl text-center min-w-[44px] bg-white bg-opacity-20 ${visibleKey && 'animate-pulse'} rounded-md`}>{char}
-    </div>
-    {visibleKey && <div className="absolute top-20 right-0">
-                <Keyboard setBoxes={setBoxes} setVisibleKey={setVisibleKey} index={index} />
-            </div>}
-    </div>
-
+      <div {...props} className={`m-1 p-2 text-xl text-center min-w-[44px] bg-white bg-opacity-20 ${isVisibleKey && 'animate-pulse'} rounded-md`}>{children}
+      </div>
   )
 }
 export default DigitResult
