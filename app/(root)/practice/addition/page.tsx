@@ -12,8 +12,8 @@ const AdditionPage = () => {
     const level = cookieStore.get('practiceLevelpracticeAddition')?.value || 1
     const tempLevel = cookieStore.get('practiceTempLevelpracticeAddition')?.value
     const levelParams = calculateLevelAddition(Number(tempLevel ? tempLevel : level))
-    console.log('tempLevel: ', tempLevel, 'level: ', level)
-    console.log('levelParams: ', levelParams)
+    // console.log('tempLevel: ', tempLevel, 'level: ', level)
+    // console.log('levelParams: ', levelParams)
 
     return (
         <div className="flex-1">

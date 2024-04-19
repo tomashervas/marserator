@@ -11,8 +11,8 @@ const SubstractionPage = () => {
     const level = cookieStore.get('practiceLevelpracticeSubtraction')?.value || 1
     const tempLevel = cookieStore.get('practiceTempLevelpracticeSubtraction')?.value
     const levelParams = calculateLevelSubtraction(Number(tempLevel ? tempLevel : level))
-    console.log('tempLevel: ', tempLevel, 'level: ', level)
-    console.log('levelParams: ', levelParams)
+    // console.log('tempLevel: ', tempLevel, 'level: ', level)
+    // console.log('levelParams: ', levelParams)
 
     return (
         <div className="flex-1">

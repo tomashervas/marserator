@@ -51,7 +51,7 @@ const Menu = ({ closeMenu }: MenuProps) => {
 
     function onChangeTempLevel(event: React.MouseEvent<HTMLButtonElement>): void {
         const selectedLevel = Number(event.currentTarget.textContent);
-        console.log(event.currentTarget.textContent)
+        // console.log(event.currentTarget.textContent)
         setPracticeTempLevel(selectOperation(pathname), selectedLevel)
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 90);

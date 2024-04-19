@@ -9,8 +9,8 @@ const MultiplyPage = () => {
     const level = cookieStore.get('practiceLevelpracticeMultiply')?.value || 1
     const tempLevel = cookieStore.get('practiceTempLevelpracticeMultiply')?.value
     const levelParams = calculateLevelMultiplication(Number(tempLevel ? tempLevel : level))
-    console.log('tempLevel: ', tempLevel, 'level: ', level)
-    console.log('levelParams: ', levelParams)
+    // console.log('tempLevel: ', tempLevel, 'level: ', level)
+    // console.log('levelParams: ', levelParams)
 
     return (
         <div className="flex-1">
