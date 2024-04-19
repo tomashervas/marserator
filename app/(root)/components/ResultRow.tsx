@@ -20,7 +20,24 @@ const ResultRow = ({ num, result, keyName, operator }: ResultProps) => {
     const [boxes, setBoxes] = useState<string[]>(num.toString().split(''))
     const [index, setIndex] = useState<number>(0)
     const router = useRouter()
-    const { practiceLevel, practiceTempLevel, setPracticeTempLevel, setPracticeLevel, practiceScore, practiceBestScore, practiceBestStreak, setPracticeScore, setPracticeBestStreak, setPracticeBestScore, resetPractice, setKeyName, toNextLevel, setToNextLevel,isVisibleKey, setIsVisibleKey } = useStore(state => state)
+    const { practiceLevel, 
+            practiceTempLevel, 
+            setPracticeTempLevel,
+            setPracticeLevel, 
+            practiceScore, 
+            practiceBestScore, 
+            practiceBestStreak, 
+            setPracticeScore, 
+            setPracticeBestStreak, 
+            setPracticeBestScore, 
+            resetPractice, 
+            setKeyName, 
+            toNextLevel, 
+            setToNextLevel,
+            isVisibleKey, 
+            setIsVisibleKey,
+            setIsVisibleCarring
+        } = useStore(state => state)
     const success = useRef<HTMLAudioElement>(null)
     const levelup = useRef<HTMLAudioElement>(null)
     const fail = useRef<HTMLAudioElement>(null)
@@ -38,10 +55,15 @@ const ResultRow = ({ num, result, keyName, operator }: ResultProps) => {
                 success.current ? success.current.volume = 0.2 : null
                 success.current?.play()
                 await reset()
-                setPracticeScore(keyName, practiceScore[keyName] + (1 * practiceLevel[keyName]))
+                
+                if ((practiceTempLevel[keyName] === practiceLevel[keyName]) || practiceTempLevel[keyName] === 0) {
+                    setPracticeScore(keyName, practiceScore[keyName] + (1 * practiceLevel[keyName]))
+                } else setPracticeScore(keyName, practiceScore[keyName] + (1 * practiceTempLevel[keyName]))
+
                 setPracticeBestStreak(keyName, practiceBestStreak[keyName] + 1)
+                setIsVisibleCarring(false)
                 practiceBestScore[keyName] <= practiceScore[keyName] && setPracticeBestScore(keyName, practiceScore[keyName] + (1 * practiceLevel[keyName]))
-                if (practiceLevel['practiceAddition'] <= 22 && practiceLevel['practiceSubtraction'] <= 7) {
+                if (practiceLevel['practiceAddition'] <= 22 && practiceLevel['practiceSubtraction'] <= 7 && practiceLevel['practiceMultiply'] <= 20) {
                     setToNextLevel(toNextLevel - 1)
                 }
                 if (toNextLevel === 0) {
@@ -56,7 +78,7 @@ const ResultRow = ({ num, result, keyName, operator }: ResultProps) => {
                         document.cookie = `practiceLevel${keyName}=${practiceLevel[keyName] + 1}; path=/; expires=${expirationDate.toUTCString()}`
                     }
 
-                    setToNextLevel(practiceTempLevel[keyName] !== 0 ? practiceTempLevel[keyName] + 2 : practiceLevel[keyName] + 10)
+                    setToNextLevel(practiceTempLevel[keyName] !== 0 ? practiceTempLevel[keyName] + 10 : practiceLevel[keyName] + 10)
                     levelup.current?.play()
                 }
                 router.refresh()

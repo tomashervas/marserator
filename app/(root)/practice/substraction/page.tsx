@@ -4,6 +4,7 @@ import Score from "../../components/Score"
 import { useEffect, useState } from "react"
 import { calculateLevelSubtraction } from "@/utils/operations"
 import { cookies } from "next/headers"
+import Image from "next/image"
 
 const SubstractionPage = () => {
     const cookieStore = cookies()
@@ -24,6 +25,8 @@ const SubstractionPage = () => {
                 {/* <Operation numRows={2} digits={1} operator="+" lowNumbers={false} keyName="practiceAddition"/> */}
             </div>
             <Score keyName="practiceSubtraction"/>
+            <Image className="absolute right-0 top-2/4" src={`/einst4.png`} alt="logo" width={120} height={188} />
+
         </div>
     )
 }

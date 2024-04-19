@@ -12,6 +12,7 @@ export interface StoreState {
     toNextLevel: number;
     themeColor: string;
     isVisibleKey: boolean;
+    isVisibleCarring: boolean
     practiceLevel: Practice
     practiceTempLevel: Practice
     practiceScore: Practice
@@ -20,6 +21,7 @@ export interface StoreState {
     setKeyName: (keyName: string) => void;
     setToNextLevel: (toNextLevel: number) => void;
     setIsVisibleKey: (isVisibleKey: boolean) => void;
+    setIsVisibleCarring: (isVisibleCarring: boolean) => void;
     setThemeColor: (color: string) => void;
     setPracticeLevel: (key: keyof Practice, value: number) => void;
     setPracticeTempLevel: (key: keyof Practice, value: number) => void;
@@ -36,6 +38,7 @@ export const useStore = create<StoreState>()(
             toNextLevel: 10,
             themeColor: "#fde047",
             isVisibleKey: false,
+            isVisibleCarring: false,
             practiceLevel: {
                 practiceAddition: 1,
                 practiceSubtraction: 1,
@@ -64,6 +67,7 @@ export const useStore = create<StoreState>()(
             setKeyName: (name: string) => set({ keyName: name }),
             setToNextLevel: (value: number) => set({ toNextLevel: value }),
             setIsVisibleKey: (value: boolean) => set({ isVisibleKey: value }),
+            setIsVisibleCarring: (value: boolean) => set({ isVisibleCarring: value }),
             setThemeColor: (color: string) => set({ themeColor: color }),
             setPracticeLevel: (key, value) => set(state => ({ practiceLevel: { ...state.practiceLevel, [key]: value } })),
             setPracticeTempLevel: (key, value) => set(state => ({ practiceTempLevel: { ...state.practiceTempLevel, [key]: value } })),

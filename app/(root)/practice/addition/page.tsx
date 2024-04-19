@@ -4,6 +4,7 @@ import Score from "../../components/Score"
 import { useEffect, useState } from "react"
 import { calculateLevelAddition } from "@/utils/operations"
 import { cookies } from "next/headers"
+import Image from "next/image"
 
 const AdditionPage = () => {
     
@@ -24,6 +25,8 @@ const AdditionPage = () => {
                 <Operation numRows={levelParams.numRows} digits={levelParams.digits} operator="+" lowNumbers={levelParams.lowNumbers} keyName="practiceAddition"/>
                 {/* <Operation numRows={2} digits={1} operator="+" lowNumbers={false} keyName="practiceAddition"/> */}
             </div>
+            <Image className="absolute right-0 top-2/4" src={`/einst4.png`} alt="logo" width={120} height={188} />
+
             <Score keyName="practiceAddition"/>
         </div>
     )

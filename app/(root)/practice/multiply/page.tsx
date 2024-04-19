@@ -2,6 +2,7 @@ import { cookies } from "next/headers"
 import Score from "../../components/Score"
 import { calculateLevelMultiplication } from "@/utils/operations"
 import Multiplication from "../../components/Multiplication"
+import Image from "next/image"
 
 const MultiplyPage = () => {
   const cookieStore = cookies()
@@ -22,6 +23,7 @@ const MultiplyPage = () => {
                 {/* <Operation numRows={2} digits={1} operator="+" lowNumbers={false} keyName="practiceAddition"/> */}
             </div>
             <Score keyName="practiceMultiply"/>
+            <Image className="absolute right-0 top-2/4" src={`/einst4.png`} alt="logo" width={120} height={188} />
         </div>
     )
 }

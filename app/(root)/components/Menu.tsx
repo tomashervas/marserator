@@ -1,9 +1,8 @@
 import { IoCloseOutline } from "react-icons/io5"
 import IconButton from "./IconButton"
-import { useEffect } from "react"
 import { useStore } from "@/hooks/useStore"
 import { usePathname, useRouter } from "next/navigation"
-import { Practice } from "@/hooks/useStore"
+import About from "./About"
 
 
 interface MenuProps {
@@ -19,6 +18,7 @@ const Menu = ({ closeMenu }: MenuProps) => {
     const { themeColor, setThemeColor, practiceLevel, practiceTempLevel, setPracticeTempLevel, keyName, resetPractice, setToNextLevel } = useStore((state) => state);
     const router = useRouter()
 
+    let level = 0
     
     const selectOperation = (operation: string) => {
         if (operation === '/practice/addition') {
@@ -30,8 +30,11 @@ const Menu = ({ closeMenu }: MenuProps) => {
         }
         else  return 'practiceAddition'
     }
-    const level = practiceLevel[selectOperation(pathname)] 
 
+    if (pathname.includes('addition') || pathname.includes('substraction') || pathname.includes('multiply')) {
+        level = practiceLevel[selectOperation(pathname)] 
+    }
+    
     const levelArray = Array.from({ length: level }, (_, i) => i + 1);
 
     const handleColorChange = (e: any) => {
@@ -87,6 +90,8 @@ const Menu = ({ closeMenu }: MenuProps) => {
                     ))}
                 </ul>
             </div>
+
+            <About />
 
         </div>
     )

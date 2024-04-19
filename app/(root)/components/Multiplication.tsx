@@ -25,8 +25,8 @@ const Multiplication = ({ numRows, digits, operator, base, keyName }: Multiplica
     }
     carryingRow.push(" ")
     // console.log(nums + " = " + result)
-    console.log('result length', result.toString().length)
-    console.log('carryingRow', carryingRow)
+    //console.log('result length', result.toString().length)
+    //console.log('carryingRow', carryingRow)
 
     return (
         <div className="flex flex-col items-end ">
